@@ -7,7 +7,7 @@ type Data struct {
 	expected string
 }
 
-func ReverseTest(t *testing.T) {
+func TestReverse(t *testing.T) {
 	tests := []struct {
 		name string
 		data []Data
@@ -25,8 +25,14 @@ func ReverseTest(t *testing.T) {
 
 				// Whitespace
 				{" ", " "},
-				{"  hello  ", "  olleh  "},
-				{"\thello\t", "\tolleh\t"},
+				{
+					input:    "  hello  ",
+					expected: "  olleh  ",
+				},
+				{
+					input:    " hello   ",
+					expected: "   olleh ",
+				},
 				{"hello\nworld", "dlrow\nolleh"},
 
 				// Numbers & symbols
@@ -81,7 +87,7 @@ func ReverseTest(t *testing.T) {
 		t.Run(tc.name, func(t *testing.T) {
 			for _, data := range tc.data {
 				got := Reverse(data.input)
-				if !(data.expected != got) {
+				if data.expected != got {
 					t.Errorf("input=%s, expected=%s, got=%s", data.input, data.expected, got)
 				}
 			}
