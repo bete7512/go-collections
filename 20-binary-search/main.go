@@ -11,7 +11,6 @@ func BinarySearch(s []int, target int) (int, bool) {
 		mid := (i + j) / 2
 
 		if s[mid] == target {
-
 			result = mid
 			return result, true
 		}
