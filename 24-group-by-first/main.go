@@ -7,7 +7,12 @@ func GroupByFirst(words []string) map[rune][]string {
 		if word == "" {
 			continue
 		}
-		firstChar := []rune(word)[0]
+		var firstChar rune
+
+		for _, r := range word {
+			firstChar = r
+			break
+		}
 		mappedstrs[firstChar] = append(mappedstrs[firstChar], word)
 	}
 	return mappedstrs
