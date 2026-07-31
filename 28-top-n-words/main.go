@@ -21,7 +21,7 @@ func TopN(text string, n int) []string {
 		count int
 	}
 
-	countMaps := []wordCount{}
+	countMaps := make([]wordCount, 0, len(counts))
 	for key, val := range counts {
 		countMaps = append(countMaps, wordCount{word: key, count: val})
 	}
@@ -33,7 +33,7 @@ func TopN(text string, n int) []string {
 		)
 	})
 
-	topNs := []string{}
+	topNs := make([]string, 0, min(n, len(countMaps)))
 
 	for i := 0; i < n && i < len(countMaps); i = i + 1 {
 		topNs = append(topNs, countMaps[i].word)
