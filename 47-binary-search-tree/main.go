@@ -43,6 +43,9 @@ func (t *BST) Insert(v int) {
 	}
 	cur := t.root
 	for {
+		if cur.Val == v {
+			return
+		}
 		newNode := &TreeNode{Val: v}
 		if v < cur.Val {
 			if cur.Left != nil {
