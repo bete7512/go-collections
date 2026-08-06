@@ -54,6 +54,29 @@ func TestExampleTree(t *testing.T) {
 	}
 }
 
+func TestDuplicatesIgnored(t *testing.T) {
+	var tree BST
+	tree.Insert(5)
+	tree.Insert(5)
+	tree.Insert(5)
+
+	if got := tree.Size(); got != 1 {
+		t.Errorf("Size after triple insert of 5 = %d, want 1 (duplicates must be ignored)", got)
+	}
+	if !tree.Contains(5) {
+		t.Errorf("Contains(5) = false, want true")
+	}
+
+	tree.Insert(3)
+	tree.Insert(8)
+	tree.Insert(3) // duplicate of a non-root node
+	tree.Insert(8)
+
+	if got := tree.Size(); got != 3 {
+		t.Errorf("Size = %d, want 3 — non-root duplicates must be ignored too", got)
+	}
+}
+
 func TestDegenerateAscending(t *testing.T) {
 	var tree BST
 	for v := 1; v <= 100; v++ {
