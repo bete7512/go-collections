@@ -16,7 +16,6 @@ func ReadLines(path string) ([]string, error) {
 	lines := []string{}
 	for scanner.Scan() {
 		lines = append(lines, scanner.Text())
-
 	}
 	if err := scanner.Err(); err != nil {
 		return []string{}, err
